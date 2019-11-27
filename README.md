@@ -51,7 +51,7 @@ Faça um método que deve receber uma string como parâmetro e retornar um bool 
 ```
  
 #
-**Agora você deve contruir uma API que contenha:**
+**Agora você deve contruir uma API que contenha: (pode usar net core ou clássico ) **
 ```
 - Uma funcionalidade para fazer login.
 - Uma funcionalidade para cadastrar novas cidades:
