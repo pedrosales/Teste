@@ -76,6 +76,26 @@ namespace Knewin
                         Url = new Uri("https://www.knewin.com/"),
                     }
                 });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please insert JWT with Bearer into field",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                    },
+                        new string[] { }
+                    }
+                });
             });
 
             services.AddDbContext<KnewinContext>(opt => opt.UseInMemoryDatabase("Knewin"));
@@ -116,7 +136,7 @@ namespace Knewin
             });
         }
 
-         private static void RegisterServices(IServiceCollection services)
+        private static void RegisterServices(IServiceCollection services)
         {
             // Adding dependencies from another layers (isolated from Presentation)
             NativeInjectorBootStrapper.RegisterServices(services);
