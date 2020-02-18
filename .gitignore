@@ -1,0 +1,17 @@
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+*.suo
+*.user
+bin
+obj
+packages
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
