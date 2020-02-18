@@ -1,8 +1,0 @@
-C:\Users\pedro\Desktop\TesteKnewin\Knewin.Domain\bin\Debug\netcoreapp3.1\Knewin.Domain.deps.json
-C:\Users\pedro\Desktop\TesteKnewin\Knewin.Domain\bin\Debug\netcoreapp3.1\Knewin.Domain.dll
-C:\Users\pedro\Desktop\TesteKnewin\Knewin.Domain\bin\Debug\netcoreapp3.1\Knewin.Domain.pdb
-C:\Users\pedro\Desktop\TesteKnewin\Knewin.Domain\obj\Debug\netcoreapp3.1\Knewin.Domain.csprojAssemblyReference.cache
-C:\Users\pedro\Desktop\TesteKnewin\Knewin.Domain\obj\Debug\netcoreapp3.1\Knewin.Domain.AssemblyInfoInputs.cache
-C:\Users\pedro\Desktop\TesteKnewin\Knewin.Domain\obj\Debug\netcoreapp3.1\Knewin.Domain.AssemblyInfo.cs
-C:\Users\pedro\Desktop\TesteKnewin\Knewin.Domain\obj\Debug\netcoreapp3.1\Knewin.Domain.dll
-C:\Users\pedro\Desktop\TesteKnewin\Knewin.Domain\obj\Debug\netcoreapp3.1\Knewin.Domain.pdb
