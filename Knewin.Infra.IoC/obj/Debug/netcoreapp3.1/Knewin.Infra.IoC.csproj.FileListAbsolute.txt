@@ -1,0 +1,15 @@
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\bin\Debug\netcoreapp3.1\Knewin.Infra.IoC.deps.json
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\bin\Debug\netcoreapp3.1\Knewin.Infra.IoC.dll
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\bin\Debug\netcoreapp3.1\Knewin.Infra.IoC.pdb
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\obj\Debug\netcoreapp3.1\Knewin.Infra.IoC.csprojAssemblyReference.cache
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\obj\Debug\netcoreapp3.1\Knewin.Infra.IoC.AssemblyInfoInputs.cache
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\obj\Debug\netcoreapp3.1\Knewin.Infra.IoC.AssemblyInfo.cs
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\obj\Debug\netcoreapp3.1\Knewin.Infra.IoC.dll
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\obj\Debug\netcoreapp3.1\Knewin.Infra.IoC.pdb
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\bin\Debug\netcoreapp3.1\Knewin.Application.dll
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\bin\Debug\netcoreapp3.1\Knewin.Domain.dll
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\bin\Debug\netcoreapp3.1\Knewin.Infra.Data.dll
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\bin\Debug\netcoreapp3.1\Knewin.Application.pdb
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\bin\Debug\netcoreapp3.1\Knewin.Domain.pdb
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\bin\Debug\netcoreapp3.1\Knewin.Infra.Data.pdb
+C:\Users\pedro\Desktop\TesteKnewin\Knewin.Infra.IoC\obj\Debug\netcoreapp3.1\Knewin.Infra.IoC.csproj.CopyComplete
