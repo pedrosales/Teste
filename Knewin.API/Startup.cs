@@ -13,6 +13,7 @@ using System.IO;
 using Knewin.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Knewin.Infra.IoC.ContainerIOC;
+using Knewin.Domain.Entities;
 
 namespace Knewin
 {
@@ -121,12 +122,19 @@ namespace Knewin
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<KnewinContext>();
+                PopularUsuarios(context);
+                // Seed the database.
+            }
+
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cidade API");
                 c.RoutePrefix = string.Empty;
             });
 
@@ -140,6 +148,17 @@ namespace Knewin
         {
             // Adding dependencies from another layers (isolated from Presentation)
             NativeInjectorBootStrapper.RegisterServices(services);
+        }
+
+        private void PopularUsuarios(KnewinContext context)
+        {
+            var user1 = new User { Id = 1, Username = "admin", Password = "admin", Role = "manager" };
+            context.Usuarios.Add(user1);
+
+            var user2 = new User { Id = 2, Username = "Pedro", Password = "1234", Role = "employee" };
+            context.Usuarios.Add(user2);
+
+            context.SaveChanges();
         }
     }
 }

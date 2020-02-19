@@ -20,6 +20,22 @@ namespace Knewin.Controllers
             return await cidadeService.GetAll();
         }
 
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<Cidade> GetById([FromServices] ICidadeService cidadeService,
+                                                        int id)
+        {
+            return await cidadeService.GetById(id);
+        }
+
+        [HttpGet]
+        [Route("GetByName")]
+        public async Task<Cidade> GetByName([FromServices] ICidadeService cidadeService,
+                                                        string nomeCidade)
+        {
+            return await cidadeService.GetByNameAsync(nomeCidade);
+        }
+
         // POST api/values
         [HttpPost]
         public async Task Post([FromBody]Cidade value, [FromServices] ICidadeService cidadeService)
