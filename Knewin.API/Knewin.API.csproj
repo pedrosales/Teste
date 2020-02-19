@@ -16,6 +16,7 @@
     <ProjectReference Include="..\Knewin.Domain\Knewin.Domain.csproj" />
     <ProjectReference Include="..\Knewin.Infra.Data\Knewin.Infra.Data.csproj" />
     <ProjectReference Include="..\Knewin.Infra.IoC\Knewin.Infra.IoC.csproj" />
+    <ProjectReference Include="..\Knewin.Application\Knewin.Application.csproj" />
   </ItemGroup>
 
 </Project>

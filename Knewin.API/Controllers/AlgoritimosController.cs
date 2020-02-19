@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WeChip.API.Controllers
+namespace Knewin.API.Controllers
 {
     
     [Route("v1/algoritimos")]

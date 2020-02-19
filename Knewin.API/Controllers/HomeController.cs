@@ -5,21 +5,23 @@ using System;
 using Microsoft.AspNetCore.Authorization;
 using Knewin.API.Services;
 using Knewin.API.Repositories;
+using Knewin.Application.Interfaces;
 
 namespace Knewin.Controllers
 {
-    [Route("v1/account")]
+    [Route("v1/home")]
     public class HomeController : Controller
     {
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
-        public async Task<ActionResult<dynamic>> Login([FromBody]UserLogin model)
+        public async Task<ActionResult<dynamic>> Login([FromBody]UserModel model,
+                                                       [FromServices] IUserService userService)
         {
             if(model == null)
                 return Json( new { mensagem = "Usuário não informado" });
-            //var userRequest = new User{ Username = username, Password = password};
-            var user = UserRepository.Get(model.Username, model.Password);
+
+            var user = await userService.Login(model.Username, model.Password);
 
             if (user == null)
                 return NotFound(new { message = "Usuário ou senha inválidos" });
