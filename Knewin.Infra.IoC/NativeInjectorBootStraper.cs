@@ -15,12 +15,14 @@ namespace Knewin.Infra.IoC.ContainerIOC
             services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
             services.AddScoped<ICidadeService, CidadeService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IFronteiraService, FronteiraService>();
             
 
             // Infra - Data
             services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddScoped<ICidadeRepository, CidadeRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IFronteiraRepository, FronteiraRepository>();
         }
     }
 }

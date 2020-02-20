@@ -136,6 +136,7 @@ namespace Knewin
                 var context = serviceScope.ServiceProvider.GetService<KnewinContext>();
                 PopularUsuarios(context);
                 PopularCidades(context);
+                PopularFronteiras(context);
             }
 
             app.UseAuthentication();
@@ -170,42 +171,105 @@ namespace Knewin
             context.SaveChanges();
         }
 
+        // private void PopularCidades(KnewinContext context)
+        // {
+        //     var cidade1 = new Cidade { Id = 1, Nome = "Florianópolis", Habitantes = 477.798, };
+        //     context.Cidades.Add(cidade1);
+
+        //     var cidade2 = new Cidade { Id = 2, Nome = "São José", Habitantes = 242.927 };
+        //     context.Cidades.Add(cidade2);
+
+        //     var cidade3 = new Cidade { Id = 3, Nome = "Palhoça", Habitantes = 168.259 };
+        //     context.Cidades.Add(cidade3);
+
+        //     context.SaveChanges();
+        // }
+
         private void PopularCidades(KnewinContext context)
         {
-            var cidade1 = new Cidade { Id = 1, Nome = "Florianópolis", Habitantes = 477.798, };
+            var cidade1 = new Cidade { Id = 1, Nome = "Cidade1", Habitantes = 477.798, };
             context.Cidades.Add(cidade1);
 
-            var cidade2 = new Cidade { Id = 2, Nome = "São José", Habitantes = 242.927 };
+            var cidade2 = new Cidade { Id = 2, Nome = "Cidade2", Habitantes = 242.927 };
             context.Cidades.Add(cidade2);
 
-            var cidade3 = new Cidade { Id = 3, Nome = "palhoca", Habitantes = 168.259 };
+            var cidade3 = new Cidade { Id = 3, Nome = "Cidade3", Habitantes = 168.259 };
             context.Cidades.Add(cidade3);
 
-            context.SaveChanges();
+            var cidade4 = new Cidade { Id = 4, Nome = "Cidade4", Habitantes = 168.259 };
+            context.Cidades.Add(cidade4);
 
-            //Fronteiras
-            var fronteiraFloripa = new List<Cidade>
-            {
-                cidade2,
-                cidade3
-            };
+            var cidade5 = new Cidade { Id = 5, Nome = "Cidade5", Habitantes = 168.259 };
+            context.Cidades.Add(cidade5);
 
-            cidade1.Fronteiras.AddRange(new List<Cidade> { cidade2, cidade3 });
-            context.SaveChanges();
-            cidade2.Fronteiras.Add(cidade1);
-            context.SaveChanges();
-            cidade3.Fronteiras.Add(cidade1);
-            context.SaveChanges();
+            var cidade6 = new Cidade { Id = 6, Nome = "Cidade6", Habitantes = 168.259 };
+            context.Cidades.Add(cidade6);
 
+            var cidade7 = new Cidade { Id = 7, Nome = "Cidade7", Habitantes = 168.259 };
+            context.Cidades.Add(cidade7);
+
+            var cidade8 = new Cidade { Id = 8, Nome = "Cidade8", Habitantes = 168.259 };
+            context.Cidades.Add(cidade8);
+
+            var cidade9 = new Cidade { Id = 9, Nome = "Cidade9", Habitantes = 168.259 };
+            context.Cidades.Add(cidade9);
+
+            var cidade10 = new Cidade { Id = 10, Nome = "Cidade10", Habitantes = 168.259 };
+            context.Cidades.Add(cidade10);
+
+            context.SaveChanges();
         }
 
         private void PopularFronteiras(KnewinContext context)
         {
-            var cidade = context.Cidades.FirstOrDefaultAsync(x => x.Nome.Equals("Florianópolis"));
-            if (cidade != null)
-            {
+            var fronteira1 = new Fronteira { Cidade1 = 1, Cidade2 = 2 };
+            context.Fronteiras.Add(fronteira1);
 
-            }
+            var fronteira2 = new Fronteira { Cidade1 = 1, Cidade2 = 3 };
+            context.Fronteiras.Add(fronteira2);
+
+            var fronteira3 = new Fronteira { Cidade1 = 2, Cidade2 = 1 };
+            context.Fronteiras.Add(fronteira3);
+            var fronteira4 = new Fronteira { Cidade1 = 2, Cidade2 = 5 };
+            context.Fronteiras.Add(fronteira4);
+
+            var fronteira5 = new Fronteira { Cidade1 = 3, Cidade2 = 1 };
+            context.Fronteiras.Add(fronteira5);
+            var fronteira6 = new Fronteira { Cidade1 = 3, Cidade2 = 4 };
+            context.Fronteiras.Add(fronteira6);
+
+            var fronteira7 = new Fronteira { Cidade1 = 4, Cidade2 = 3 };
+            context.Fronteiras.Add(fronteira7);
+            var fronteira8 = new Fronteira { Cidade1 = 4, Cidade2 = 8 };
+            context.Fronteiras.Add(fronteira8);
+
+            var fronteira9 = new Fronteira { Cidade1 = 8, Cidade2 = 4 };
+            context.Fronteiras.Add(fronteira9);
+
+            var fronteira10 = new Fronteira { Cidade1 = 5, Cidade2 = 2 };
+            context.Fronteiras.Add(fronteira10);
+            var fronteira11 = new Fronteira { Cidade1 = 5, Cidade2 = 6 };
+            context.Fronteiras.Add(fronteira11);
+            var fronteira12 = new Fronteira { Cidade1 = 5, Cidade2 = 7 };
+            context.Fronteiras.Add(fronteira12);
+
+            var fronteira13 = new Fronteira { Cidade1 = 7, Cidade2 = 5 };
+            context.Fronteiras.Add(fronteira13);
+            var fronteira14 = new Fronteira { Cidade1 = 7, Cidade2 = 10 };
+            context.Fronteiras.Add(fronteira14);
+
+            var fronteira15 = new Fronteira { Cidade1 = 10, Cidade2 = 7 };
+            context.Fronteiras.Add(fronteira15);
+
+            var fronteira16 = new Fronteira { Cidade1 = 6, Cidade2 = 5 };
+            context.Fronteiras.Add(fronteira16);
+            var fronteira17 = new Fronteira { Cidade1 = 6, Cidade2 = 9 };
+            context.Fronteiras.Add(fronteira17);
+
+            var fronteira18 = new Fronteira { Cidade1 = 9, Cidade2 = 6 };
+            context.Fronteiras.Add(fronteira18);
+            
+            context.SaveChanges();
         }
     }
 }

@@ -9,6 +9,6 @@ namespace Knewin.Domain.Entities
         public string Nome { get; set; }
         [Required]
         public double Habitantes { get; set; }
-       public virtual List<Cidade> Fronteiras { get; set; } = new List<Cidade>();
+        public virtual List<Cidade> Fronteiras { get; set; } = new List<Cidade>();
     }
 }

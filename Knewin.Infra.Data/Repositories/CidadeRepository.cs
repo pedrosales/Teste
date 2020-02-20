@@ -16,7 +16,7 @@ namespace Knewin.Infra.Data.Repositories
 
         public async Task<Cidade> GetByIdFronteiras(int id)
         {
-            var cidade = await _context.Cidades.Include(x => x.Fronteiras)
+            var cidade = await _context.Cidades.Include(x => x.Fronteiras).ThenInclude(x => x.Fronteiras)
                                                 .FirstOrDefaultAsync(x => x.Id == id);
 
             return cidade;
