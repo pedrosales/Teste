@@ -14,9 +14,18 @@ namespace Knewin.Infra.Data.Repositories
             _context = context;
         }
 
+        public async Task<Cidade> GetByIdFronteiras(int id)
+        {
+            var cidade = await _context.Cidades.Include(x => x.Fronteiras)
+                                                .FirstOrDefaultAsync(x => x.Id == id);
+
+            return cidade;
+        }
+
         public async Task<Cidade> GetByNameAsync(string nomeCidade)
         {
-            var cidade = await _context.Cidades.FirstOrDefaultAsync(x => x.Nome.Equals(nomeCidade));
+            var cidade = await _context.Cidades.Include(x => x.Fronteiras).ThenInclude(x => x.Fronteiras)
+                                .FirstOrDefaultAsync(x => x.Nome.ToLower().Trim().Equals(nomeCidade.ToLower().Trim()));
 
             return cidade;
         }

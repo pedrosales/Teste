@@ -13,6 +13,13 @@ namespace Knewin.Application.Services
             _cidadeRepositoy = cidadeRepository;
         }
 
+        public async Task<Cidade> GetByIdFronteiras(int id)
+        {
+            var cidade = await _cidadeRepositoy.GetByIdFronteiras(id);
+
+            return cidade;
+        }
+
         public async Task<Cidade> GetByNameAsync(string nomeCidade)
         {
             var cidade = await _cidadeRepositoy.GetByNameAsync(nomeCidade);

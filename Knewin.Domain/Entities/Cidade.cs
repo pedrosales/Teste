@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Knewin.Domain.Entities
@@ -8,5 +9,6 @@ namespace Knewin.Domain.Entities
         public string Nome { get; set; }
         [Required]
         public double Habitantes { get; set; }
+       public virtual List<Cidade> Fronteiras { get; set; } = new List<Cidade>();
     }
 }

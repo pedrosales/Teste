@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using Knewin.Domain.Entities;
 using Knewin.Application.Interfaces;
+using Knewin.API.Models;
+using System.Linq;
+using System;
 
 namespace Knewin.Controllers
 {
@@ -29,7 +32,16 @@ namespace Knewin.Controllers
         }
 
         [HttpGet]
+        [Route("GetWithFronteiras/{id:int}")]
+        [AllowAnonymous]
+        public async Task<Cidade> GetByIdFronteira([FromServices] ICidadeService cidadeService, int id)
+        {
+            return await cidadeService.GetByIdFronteiras(id);
+        }
+
+        [HttpGet]
         [Route("GetByName")]
+        [AllowAnonymous]
         public async Task<Cidade> GetByName([FromServices] ICidadeService cidadeService,
                                                         string nomeCidade)
         {
@@ -38,16 +50,35 @@ namespace Knewin.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task Post([FromBody]Cidade value, [FromServices] ICidadeService cidadeService)
+        [AllowAnonymous]
+        public async Task<ActionResult> Post([FromBody]CidadeModel value, [FromServices] ICidadeService cidadeService)
         {
             if (value != null)
             {
-                await cidadeService.Add(new Cidade
+                var cidadesFronteira = new List<Cidade>();
+
+                if (value.Fronteiras != null && value.Fronteiras.Any())
+                {
+                    foreach (var cidade in value.Fronteiras)
+                    {
+                        var cidadeFronteira = await cidadeService.GetById(cidade);
+                        if (cidadeFronteira == null)
+                        {
+                            return BadRequest("Cidade fronteira não encontrada");
+                        }
+
+                        cidadesFronteira.Add(cidadeFronteira);
+                    }
+                }
+
+                var novaCidade = await cidadeService.Add(new Cidade
                 {
                     Habitantes = value.Habitantes,
-                    Nome = value.Nome
+                    Nome = value.Nome,
+                    Fronteiras = cidadesFronteira
                 });
             }
+            return Ok();
         }
     }
 }

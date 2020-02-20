@@ -10,10 +10,14 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Reflection;
 using System.IO;
+using System.Linq;
 using Knewin.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Knewin.Infra.IoC.ContainerIOC;
 using Knewin.Domain.Entities;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Knewin
 {
@@ -31,6 +35,10 @@ namespace Knewin
         {
             services.AddCors();
             services.AddControllers();
+
+            services.AddMvc(option => option.EnableEndpointRouting = false)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
             services.AddAuthentication(x =>
@@ -124,9 +132,10 @@ namespace Knewin
 
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
+                // Seed the database.
                 var context = serviceScope.ServiceProvider.GetService<KnewinContext>();
                 PopularUsuarios(context);
-                // Seed the database.
+                PopularCidades(context);
             }
 
             app.UseAuthentication();
@@ -159,6 +168,44 @@ namespace Knewin
             context.Usuarios.Add(user2);
 
             context.SaveChanges();
+        }
+
+        private void PopularCidades(KnewinContext context)
+        {
+            var cidade1 = new Cidade { Id = 1, Nome = "Florianópolis", Habitantes = 477.798, };
+            context.Cidades.Add(cidade1);
+
+            var cidade2 = new Cidade { Id = 2, Nome = "São José", Habitantes = 242.927 };
+            context.Cidades.Add(cidade2);
+
+            var cidade3 = new Cidade { Id = 3, Nome = "palhoca", Habitantes = 168.259 };
+            context.Cidades.Add(cidade3);
+
+            context.SaveChanges();
+
+            //Fronteiras
+            var fronteiraFloripa = new List<Cidade>
+            {
+                cidade2,
+                cidade3
+            };
+
+            cidade1.Fronteiras.AddRange(new List<Cidade> { cidade2, cidade3 });
+            context.SaveChanges();
+            cidade2.Fronteiras.Add(cidade1);
+            context.SaveChanges();
+            cidade3.Fronteiras.Add(cidade1);
+            context.SaveChanges();
+
+        }
+
+        private void PopularFronteiras(KnewinContext context)
+        {
+            var cidade = context.Cidades.FirstOrDefaultAsync(x => x.Nome.Equals("Florianópolis"));
+            if (cidade != null)
+            {
+
+            }
         }
     }
 }
