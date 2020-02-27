@@ -14,5 +14,11 @@ namespace Knewin.Infra.Data.Context
         {
 
         }
+
+        // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        // {
+        //     modelBuilder.Entity<Cidade>()
+        //         .HasMany(i => i.Fronteiras);
+        // }
     }
 }
