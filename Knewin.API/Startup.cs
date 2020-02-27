@@ -59,12 +59,6 @@ namespace Knewin
                 };
             });
 
-            // services.AddSwaggerGen(c =>
-            // {
-            //     c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-            // });
-
-            // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -160,6 +154,11 @@ namespace Knewin
             NativeInjectorBootStrapper.RegisterServices(services);
         }
 
+#region PopularBancoDados
+
+
+    
+#endregion
         private void PopularUsuarios(KnewinContext context)
         {
             var user1 = new User { Id = 1, Username = "admin", Password = "admin", Role = "manager" };
@@ -170,20 +169,6 @@ namespace Knewin
 
             context.SaveChanges();
         }
-
-        // private void PopularCidades(KnewinContext context)
-        // {
-        //     var cidade1 = new Cidade { Id = 1, Nome = "Florianópolis", Habitantes = 477.798, };
-        //     context.Cidades.Add(cidade1);
-
-        //     var cidade2 = new Cidade { Id = 2, Nome = "São José", Habitantes = 242.927 };
-        //     context.Cidades.Add(cidade2);
-
-        //     var cidade3 = new Cidade { Id = 3, Nome = "Palhoça", Habitantes = 168.259 };
-        //     context.Cidades.Add(cidade3);
-
-        //     context.SaveChanges();
-        // }
 
         private void PopularCidades(KnewinContext context)
         {
@@ -216,6 +201,9 @@ namespace Knewin
 
             var cidade10 = new Cidade { Id = 10, Nome = "Cidade10", Habitantes = 168.259 };
             context.Cidades.Add(cidade10);
+
+            var cidade88 = new Cidade { Id = 11, Nome = "Cidade88", Habitantes = 254.889 };
+            context.Cidades.Add(cidade88);
 
             context.SaveChanges();
         }
@@ -268,7 +256,8 @@ namespace Knewin
 
             var fronteira18 = new Fronteira { Cidade1 = 9, Cidade2 = 6 };
             context.Fronteiras.Add(fronteira18);
-            
+
+            var fronteira88 = new Fronteira { Cidade1 = 88, Cidade2 = 10 };
             context.SaveChanges();
         }
     }

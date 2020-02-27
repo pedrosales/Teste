@@ -21,20 +21,35 @@ namespace Knewin.Controllers
         [AllowAnonymous]
         public ActionResult ShortPath([FromServices] ICidadeService cidadeService, [FromServices] IFronteiraService fronteiraService, int inicio, int final)
         {
-            var vertices = cidadeService.GetAll().Result.Select(x => x.Id).ToArray();
+            var cidadeInicio = cidadeService.GetById(inicio).Result;
+            if (cidadeInicio == null)
+            {
+                return NotFound(new { success = false, msg = "Cidade inicial não informada"});
+            }
+
+            var cidadeFim = cidadeService.GetById(final).Result;
+            if (cidadeInicio == null)
+            {
+                return NotFound(new { success = false, msg = "Cidade final não informada"});
+            }
+
+            var vertices = cidadeService.GetAll().Result.ToArray();
             var fronteiras = fronteiraService.GetAll().Result.ToArray();
-            var edges = new List<Tuple<int, int>>();
+            var edges = new List<Tuple<Cidade, Cidade>>();
 
             foreach (var fronteira in fronteiras)
             {
-                edges.Add(Tuple.Create(fronteira.Cidade1, fronteira.Cidade2));
+                var cidade1 = cidadeService.GetById(fronteira.Cidade1);
+                var cidade2 = cidadeService.GetById(fronteira.Cidade2);
+                edges.Add(Tuple.Create(cidade1.Result, cidade2.Result));
             }
-
-            var grafo = new Graph<int>(vertices, edges.ToArray());
-
-            var menorCaminho = BuscaMenorCaminho.ShortestPathFunction(grafo, inicio);
-
-            return Json(new { result = menorCaminho(final) });
+            
+            // var grafo = new Graph<int>(vertices, edges.ToArray());
+            var grapho = new Graph<Cidade>(vertices, edges);
+            var menorCaminho = BuscaMenorCaminho.ShortestPathFunction(grapho, cidadeInicio);
+            // var menorCaminho = BuscaMenorCaminho.ShortestPathFunction(grafo, inicio);
+            return Json(new { result = menorCaminho(cidadeFim) });
+            // return Json(new { result = menorCaminho(final) });
         }
     }
 }
