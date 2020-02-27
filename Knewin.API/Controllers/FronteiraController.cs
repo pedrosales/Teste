@@ -12,7 +12,7 @@ namespace Knewin.Controllers
 {
     [Route("v1/fronteira")]
     [ApiController]
-    [Authorize]
+    [AllowAnonymous]
     public class FronteiraController : Controller
     {
         // GET: api/values

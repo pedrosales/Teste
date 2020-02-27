@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Knewin.Domain.Entities;
 using Knewin.Domain.Interfaces.Repositories;
@@ -14,6 +15,12 @@ namespace Knewin.Infra.Data.Repositories
             _context = context;
         }
 
+        public async Task<IEnumerable<Cidade>> GetAllFronteira()
+        {
+            var cidades = await _context.Cidades.Include(c => c.Fronteiras).ToListAsync();
+
+            return cidades;
+        }
         public async Task<Cidade> GetByIdFronteiras(int id)
         {
             var cidade = await _context.Cidades.Include(x => x.Fronteiras).ThenInclude(x => x.Fronteiras)

@@ -4,7 +4,6 @@ using Knewin.API.Models;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using Knewin.API.Services;
-using Knewin.API.Repositories;
 using Knewin.Application.Interfaces;
 
 namespace Knewin.Controllers

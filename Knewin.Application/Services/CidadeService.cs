@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Knewin.Application.Interfaces;
 using Knewin.Domain.Entities;
@@ -13,6 +14,10 @@ namespace Knewin.Application.Services
             _cidadeRepositoy = cidadeRepository;
         }
 
+        public async Task<IEnumerable<Cidade>> GetAllFronteira()
+        {
+            return await _cidadeRepositoy.GetAllFronteira();
+        }
         public async Task<Cidade> GetByIdFronteiras(int id)
         {
             var cidade = await _cidadeRepositoy.GetByIdFronteiras(id);
@@ -25,6 +30,6 @@ namespace Knewin.Application.Services
             var cidade = await _cidadeRepositoy.GetByNameAsync(nomeCidade);
 
             return cidade;
-        }   
+        }
     }
 }

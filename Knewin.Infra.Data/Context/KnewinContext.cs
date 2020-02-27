@@ -8,9 +8,9 @@ namespace Knewin.Infra.Data.Context
         public DbSet<Cidade> Cidades { get; set; }
         public DbSet<User> Usuarios { get; set; }
         public DbSet<Fronteira> Fronteiras { get; set; }
-        
-        public KnewinContext(DbContextOptions<KnewinContext> options) 
-            : base (options)
+
+        public KnewinContext(DbContextOptions<KnewinContext> options)
+            : base(options)
         {
 
         }

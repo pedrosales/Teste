@@ -20,7 +20,7 @@ namespace Knewin.Controllers
         [AllowAnonymous]
         public async Task<IEnumerable<Cidade>> GetAll([FromServices] ICidadeService cidadeService)
         {
-            return await cidadeService.GetAll();
+            return await cidadeService.GetAllFronteira();
         }
 
         [HttpGet]
