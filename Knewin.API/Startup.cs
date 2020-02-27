@@ -257,7 +257,15 @@ namespace Knewin
             var fronteira18 = new Fronteira { Cidade1 = 9, Cidade2 = 6 };
             context.Fronteiras.Add(fronteira18);
 
-            var fronteira88 = new Fronteira { Cidade1 = 88, Cidade2 = 10 };
+            var fronteira88 = new Fronteira { Cidade1 = 11, Cidade2 = 10 };
+            context.Fronteiras.Add(fronteira88);
+            var fronteira89 = new Fronteira { Cidade1 = 11, Cidade2 = 1 };
+            context.Fronteiras.Add(fronteira89);
+            var fronteira90 = new Fronteira { Cidade1 = 11, Cidade2 = 6 };
+            context.Fronteiras.Add(fronteira90);
+            var fronteira91 = new Fronteira { Cidade1 = 11, Cidade2 = 9 };
+            context.Fronteiras.Add(fronteira91);
+
             context.SaveChanges();
         }
     }

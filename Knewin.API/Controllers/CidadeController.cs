@@ -64,7 +64,7 @@ namespace Knewin.Controllers
                         var cidadeFronteira = await cidadeService.GetById(cidade);
                         if (cidadeFronteira == null)
                         {
-                            return NotFound("Cidade não encontrada");
+                            return NotFound("Cidade fronteira não encontrada");
                         }
 
                         cidadesFronteira.Add(cidadeFronteira);

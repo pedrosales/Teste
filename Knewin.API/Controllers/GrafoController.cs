@@ -18,7 +18,6 @@ namespace Knewin.Controllers
     {
         // GET: api/values
         [HttpGet]
-        [AllowAnonymous]
         public ActionResult ShortPath([FromServices] ICidadeService cidadeService, [FromServices] IFronteiraService fronteiraService, int inicio, int final)
         {
             var cidadeInicio = cidadeService.GetById(inicio).Result;

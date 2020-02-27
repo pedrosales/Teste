@@ -17,7 +17,6 @@ namespace Knewin.Controllers
     {
         // GET: api/values
         [HttpGet]
-        [AllowAnonymous]
         public async Task<IEnumerable<Fronteira>> GetAll([FromServices] IFronteiraService fronteiraService)
         {
             return await fronteiraService.GetAll();
