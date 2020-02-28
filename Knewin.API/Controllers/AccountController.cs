@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Knewin.API.Models;
+using Knewin.API.Services;
 using Knewin.Application.Interfaces;
 using Knewin.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -17,6 +18,29 @@ namespace Knewin.API.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        [HttpPost]
+        [Route("login")]
+        [AllowAnonymous]
+        public async Task<ActionResult<dynamic>> Login([FromBody]UserLogin model,
+                                                       [FromServices] IUserService userService)
+        {
+            if(model == null)
+                return Json( new { mensagem = "Usuário não informado" });
+
+            var user = await userService.Login(model.Username, model.Password);
+
+            if (user == null)
+                return NotFound(new { message = "Usuário ou senha inválidos" });
+
+            var token = TokenService.GenerateToken(user);
+            user.Password = "";
+            return new
+            {
+                user = user,
+                token = token
+            };
+        }
+
         [HttpPost]
         public ActionResult Post([FromBody] UserModel model,
                                  [FromServices] IUserService userService)

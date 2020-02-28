@@ -25,14 +25,6 @@ namespace Knewin.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public async Task<Cidade> GetById([FromServices] ICidadeService cidadeService,
-                                                        int id)
-        {
-            return await cidadeService.GetById(id);
-        }
-
-        [HttpGet]
-        [Route("GetWithFronteiras/{id:int}")]
         [AllowAnonymous]
         public async Task<Cidade> GetByIdFronteira([FromServices] ICidadeService cidadeService, int id)
         {
@@ -79,6 +71,35 @@ namespace Knewin.Controllers
                 });
             }
             return Ok();
+        }
+
+        [HttpPut("{id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Put(int id, [FromBody]Cidade cidade, [FromServices]ICidadeService cidadeService)
+        {
+            if (cidade == null || id == cidade.Id)
+            {
+                return BadRequest();
+            }
+
+            await cidadeService.Update(cidade);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("TotalHabitantes")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetTotalHabitantes(int[] listaInteiros, [FromServices] ICidadeService cidadeService)
+        {
+
+            if (listaInteiros == null || listaInteiros.Length == 0)
+            {
+                return BadRequest();
+            }
+
+            var total = await cidadeService.GetTotalHabitantes(listaInteiros);
+            return Ok(total);
         }
     }
 }

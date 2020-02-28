@@ -31,10 +31,25 @@ namespace Knewin.Infra.Data.Repositories
 
         public async Task<Cidade> GetByNameAsync(string nomeCidade)
         {
-            var cidade = await _context.Cidades.Include(x => x.Fronteiras).ThenInclude(x => x.Fronteiras)
-                                .FirstOrDefaultAsync(x => x.Nome.ToLower().Trim().Equals(nomeCidade.ToLower().Trim()));
+            var cidade = await _context.Cidades.FirstOrDefaultAsync(x => x.Nome.ToLower().Trim().Equals(nomeCidade.ToLower().Trim()));
 
             return cidade;
+        }
+
+        public async Task<double> GetTotalHabitantes(int[] cidades)
+        {
+            double totalHabitantes = 0;
+
+            for (int i = 0; i < cidades.Length; i++)
+            {
+                var cidade = await _context.Cidades.FirstOrDefaultAsync(c => c.Id == cidades[i]);
+                if (cidade != null)
+                {
+                    totalHabitantes += cidade.Habitantes;
+                }
+            }
+
+            return totalHabitantes;
         }
     }
 }

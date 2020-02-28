@@ -9,5 +9,6 @@ namespace Knewin.Application.Interfaces
         Task<IEnumerable<Cidade>> GetAllFronteira();
         Task<Cidade> GetByNameAsync(string nomeCidade);
         Task<Cidade> GetByIdFronteiras(int id);
+        Task<double> GetTotalHabitantes(int[] cidades);
     }
 }

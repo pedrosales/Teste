@@ -21,6 +21,5 @@ namespace Knewin.Controllers
         {
             return await fronteiraService.GetAll();
         }
-
     }
 }

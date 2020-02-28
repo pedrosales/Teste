@@ -61,5 +61,10 @@ namespace Knewin.Application.Services
 
             return cidade;
         }
+
+        public async Task<double> GetTotalHabitantes(int[] cidades)
+        {
+           return await _cidadeRepositoy.GetTotalHabitantes(cidades);
+        }
     }
 }
