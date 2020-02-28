@@ -2,7 +2,7 @@
 # 
 Este documento README tem como objetivo fornecer as informações necessárias para o teste do projeto.
  Abrir o projeto no visua studio, compilar e rodar (f5).
- Será aberto a telado do navegador, onde será carregado o swagger da aplicação.
+ Será aberto a tela do navegador, onde será carregado o swagger da aplicação.
  Depois disso basta navegar entre os controllers.
  
 ` Account Controller `
