@@ -20,3 +20,10 @@ Este documento README tem como objetivo fornecer as informações necessárias p
 - Get/id -> recupera uma determinada cidade pelo seu id
 - GetByName -> recupera uma cidade pelo nome
 - TotalHabitantes -> recupera o número de habitantes
+
+`Grafo Controller`
+Encarregado de fazer a busca de menor caminho
+- Get -> Início e fim recupera o melhor caminho entre 2 vertices
+
+`Home Controller`
+Teste para definição de roles nos usuários
