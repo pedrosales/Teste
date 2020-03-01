@@ -18,6 +18,7 @@ using Knewin.Domain.Entities;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using AutoMapper;
 
 namespace Knewin
 {
@@ -35,6 +36,8 @@ namespace Knewin
         {
             services.AddCors();
             services.AddControllers();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddMvc(option => option.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)

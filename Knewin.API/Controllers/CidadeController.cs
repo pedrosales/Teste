@@ -7,6 +7,8 @@ using Knewin.Application.Interfaces;
 using Knewin.API.Models;
 using System.Linq;
 using System;
+using AutoMapper;
+using Knewin.API.ViewModels.CidadeViewModel;
 
 namespace Knewin.Controllers
 {
@@ -15,29 +17,37 @@ namespace Knewin.Controllers
     [Authorize]
     public class CidadeController : Controller
     {
+        private readonly IMapper _mapper;
+
+        public CidadeController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         // GET: api/values
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IEnumerable<Cidade>> GetAll([FromServices] ICidadeService cidadeService)
+        public async Task<IEnumerable<CidadeViewModel>> GetAll([FromServices] ICidadeService cidadeService)
         {
-            return await cidadeService.GetAllFronteira();
+            var cidades = _mapper.Map<IEnumerable<CidadeViewModel>>(await cidadeService.GetAllFronteira());
+            return cidades;
         }
 
         [HttpGet]
         [Route("{id:int}")]
         [AllowAnonymous]
-        public async Task<Cidade> GetByIdFronteira([FromServices] ICidadeService cidadeService, int id)
+        public async Task<CidadeViewModel> GetByIdFronteira([FromServices] ICidadeService cidadeService, int id)
         {
-            return await cidadeService.GetByIdFronteiras(id);
+            return _mapper.Map<CidadeViewModel>(await cidadeService.GetByIdFronteiras(id));
         }
 
         [HttpGet]
         [Route("GetByName")]
         [AllowAnonymous]
-        public async Task<Cidade> GetByName([FromServices] ICidadeService cidadeService,
+        public async Task<CidadeViewModel> GetByName([FromServices] ICidadeService cidadeService,
                                                         string nomeCidade)
         {
-            return await cidadeService.GetByNameAsync(nomeCidade);
+            return _mapper.Map<CidadeViewModel>(await cidadeService.GetByNameAsync(nomeCidade));
         }
 
         // POST api/values

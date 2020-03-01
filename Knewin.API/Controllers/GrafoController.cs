@@ -8,6 +8,8 @@ using Knewin.API.Models;
 using System.Linq;
 using System;
 using Knewin.Application.GrafoHelper;
+using AutoMapper;
+using Knewin.API.ViewModels.CidadeViewModel;
 
 namespace Knewin.Controllers
 {
@@ -16,20 +18,29 @@ namespace Knewin.Controllers
     [Authorize]
     public class GrafoController : Controller
     {
+
+        private readonly IMapper _mapper;
+
+        public GrafoController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         // GET: api/values
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult ShortPath([FromServices] ICidadeService cidadeService, [FromServices] IFronteiraService fronteiraService, int inicio, int final)
         {
             var cidadeInicio = cidadeService.GetById(inicio).Result;
             if (cidadeInicio == null)
             {
-                return NotFound(new { success = false, msg = "Cidade inicial não informada"});
+                return NotFound(new { success = false, msg = "Cidade inicial não informada" });
             }
 
             var cidadeFim = cidadeService.GetById(final).Result;
             if (cidadeInicio == null)
             {
-                return NotFound(new { success = false, msg = "Cidade final não informada"});
+                return NotFound(new { success = false, msg = "Cidade final não informada" });
             }
 
             var vertices = cidadeService.GetAll().Result.ToArray();
@@ -42,12 +53,12 @@ namespace Knewin.Controllers
                 var cidade2 = cidadeService.GetById(fronteira.Cidade2);
                 edges.Add(Tuple.Create(cidade1.Result, cidade2.Result));
             }
-            
+
             // var grafo = new Graph<int>(vertices, edges.ToArray());
             var grapho = new Graph<Cidade>(vertices, edges);
             var menorCaminho = BuscaMenorCaminho.ShortestPathFunction(grapho, cidadeInicio);
             // var menorCaminho = BuscaMenorCaminho.ShortestPathFunction(grafo, inicio);
-            return Json(new { result = menorCaminho(cidadeFim) });
+            return Json(new { result = _mapper.Map<IEnumerable<CidadeViewModel>>(menorCaminho(cidadeFim)) });
             // return Json(new { result = menorCaminho(final) });
         }
     }
