@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Knewin.API.Models;
-using Knewin.API.Services;
+using Knewin.API.Security;
 using Knewin.Application.Interfaces;
 using Knewin.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;

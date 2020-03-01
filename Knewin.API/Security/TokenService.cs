@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Knewin.Domain.Entities;
 
-namespace Knewin.API.Services
+namespace Knewin.API.Security
 {
     public static class TokenService
     {
