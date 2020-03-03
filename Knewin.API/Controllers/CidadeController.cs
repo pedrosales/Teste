@@ -87,7 +87,7 @@ namespace Knewin.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Put(int id, [FromBody]Cidade cidade, [FromServices]ICidadeService cidadeService)
         {
-            if (cidade == null || id == cidade.Id)
+            if (cidade == null || id != cidade.Id)
             {
                 return BadRequest();
             }
